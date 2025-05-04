@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         if(usuario.isEmpty()){
             throw new ResourceNotFoundException("Usuario con ID " + id + " no encontrado.");
         }
-        return usuario.orElse(null);
+        return usuario.get();
     }
 
     @Override

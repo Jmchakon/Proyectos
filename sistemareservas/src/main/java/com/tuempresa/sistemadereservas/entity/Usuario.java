@@ -24,5 +24,8 @@ public class Usuario {
     private Integer numTelefono;
     @Column(unique = true, nullable = false)
     private String email;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
 }
