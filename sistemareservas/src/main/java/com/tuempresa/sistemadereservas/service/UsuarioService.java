@@ -10,4 +10,5 @@ public interface UsuarioService {
     List<Usuario> listarUsuarios();
     Usuario actualizarUsuario(Usuario usuario);
     void eliminarUsuario(Integer id);
+    Usuario registrarUsuario(Usuario usuario);
 }

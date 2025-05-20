@@ -1,4 +1,4 @@
-package com.tuempresa.sistemadereservas.Dto;
+package com.tuempresa.sistemadereservas.dto;
 
 
 import lombok.Getter;

@@ -4,16 +4,20 @@ import com.tuempresa.sistemadereservas.entity.Usuario;
 import com.tuempresa.sistemadereservas.exception.ResourceNotFoundException;
 import com.tuempresa.sistemadereservas.exception.UsuarioYaExisteException;
 import com.tuempresa.sistemadereservas.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService{
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -58,5 +62,14 @@ public class UsuarioServiceImpl implements UsuarioService{
         }else {
             throw new ResourceNotFoundException("Usuario con ID " + id + " no encontrado.");
         }
+    }
+
+    @Override
+    public Usuario registrarUsuario(Usuario usuario) {
+        // Encriptamos la contraseña del usuario
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
+        // Guardamos el usuario en la base de datos
+        return usuarioRepository.save(usuario);
     }
 }

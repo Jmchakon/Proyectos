@@ -5,6 +5,7 @@ import com.tuempresa.sistemadereservas.entity.Reserva;
 import com.tuempresa.sistemadereservas.exception.ReservaNoDisponibleException;
 import com.tuempresa.sistemadereservas.exception.ResourceNotFoundException;
 import com.tuempresa.sistemadereservas.repository.ReservaRepository;
+import com.tuempresa.sistemadereservas.util.DateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,24 @@ public class ReservaServiceImpl implements ReservaService {
 
     @Override
     public Reserva crearReserva(Reserva reserva) {
-        Optional<Reserva> reservaExistente = reservaRepository.findByUsuarioAndFechaReserva(reserva.getUsuario(),reserva.getFechaReservacion());
+        if (!DateValidator.isFechaInicioAntesQueFin(reserva.getFechaInicio(), reserva.getFechaFin())) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la de fin.");
+        }
+
+        if (!DateValidator.isFechaInicioNoPasada(reserva.getFechaInicio())) {
+            throw new IllegalArgumentException("No se puede hacer una reserva en el pasado.");
+        }
+
+        if (!DateValidator.isDuracionValida(reserva.getFechaInicio(), reserva.getFechaFin(), 7)) {
+            throw new IllegalArgumentException("La reserva no puede durar más de 7 días.");
+        }
+
+
+
+        Optional<Reserva> reservaExistente = reservaRepository.findByUsuarioAndFechaReserva(reserva.getUsuario(),reserva.getFechaInicio());
         if(reservaExistente.isPresent()){
             throw new ReservaNoDisponibleException("Ya existe una reserva para el usuario " + reserva.getUsuario().getEmail() +
-                    " en la fecha " + reserva.getFechaReservacion());
+                    " en la fecha " + reserva.getFechaInicio());
         }
         return reservaRepository.save(reserva);
     }

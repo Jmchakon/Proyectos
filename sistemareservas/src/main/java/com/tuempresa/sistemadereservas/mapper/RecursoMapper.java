@@ -1,6 +1,6 @@
 package com.tuempresa.sistemadereservas.mapper;
 
-import com.tuempresa.sistemadereservas.Dto.RecursoPrivateDto;
+import com.tuempresa.sistemadereservas.dto.RecursoPrivateDto;
 import com.tuempresa.sistemadereservas.entity.Recurso;
 import org.mapstruct.Mapper;
 

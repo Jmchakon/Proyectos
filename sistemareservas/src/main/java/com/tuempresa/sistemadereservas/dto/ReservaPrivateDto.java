@@ -1,7 +1,5 @@
-package com.tuempresa.sistemadereservas.Dto;
+package com.tuempresa.sistemadereservas.dto;
 
-import com.tuempresa.sistemadereservas.entity.Pago;
-import com.tuempresa.sistemadereservas.entity.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
@@ -11,7 +9,8 @@ import java.util.List;
 @Setter
 public class ReservaPrivateDto {
     private List<RecursoPrivateDto> recursos;
-    private LocalDateTime fechaReservacion;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechaFin;
     private String estadoReservacion;
     private List<PagoPrivateDto> pago;
     private double total;

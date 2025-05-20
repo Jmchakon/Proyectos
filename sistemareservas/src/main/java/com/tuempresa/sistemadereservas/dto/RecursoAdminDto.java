@@ -1,4 +1,4 @@
-package com.tuempresa.sistemadereservas.Dto;
+package com.tuempresa.sistemadereservas.dto;
 
 import com.tuempresa.sistemadereservas.entity.Reserva;
 import lombok.Getter;
@@ -8,8 +8,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PagoAdminDto {
+public class RecursoAdminDto {
     private Integer idRecurso;
     private String tipoRecurso;
-    private List<Reserva> reservas;
+    private List<Reserva> reserva;
+    private double precio;
+    private String nombre;
 }

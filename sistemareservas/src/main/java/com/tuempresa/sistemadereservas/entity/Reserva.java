@@ -26,7 +26,8 @@ public class Reserva {
             inverseJoinColumns = @JoinColumn(name ="idRecurso")
     )
     private List<Recurso> recursos;
-    private LocalDateTime fechaReservacion;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechaFin;
     private String estadoReservacion;
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
     private List<Pago> pago;
