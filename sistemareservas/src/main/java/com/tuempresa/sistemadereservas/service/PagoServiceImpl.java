@@ -18,7 +18,7 @@ public class PagoServiceImpl implements PagoService {
 
     @Override
     public Pago crearPago(Pago pago) {
-        Optional<Pago> crearPago = pagoRepository.findByReferenciaPagoAndReserva_id(pago.getReferenciaPago(),pago.getReserva().getIdReserva());
+        Optional<Pago> crearPago = pagoRepository.findByReferenciaPagoAndReserva_IdReserva(pago.getReferenciaPago(),pago.getReserva().getIdReserva());
         if(crearPago.isPresent()){
             throw new PagoYaRealizadoException("Ya existe un pago con esa referencia para esta reserva.");
         }

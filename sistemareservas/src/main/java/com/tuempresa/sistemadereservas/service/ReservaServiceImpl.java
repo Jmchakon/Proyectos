@@ -34,7 +34,7 @@ public class ReservaServiceImpl implements ReservaService {
 
 
 
-        Optional<Reserva> reservaExistente = reservaRepository.findByUsuarioAndFechaReserva(reserva.getUsuario(),reserva.getFechaInicio());
+        Optional<Reserva> reservaExistente = reservaRepository.findByUsuarioAndFechaInicio(reserva.getUsuario(),reserva.getFechaInicio());
         if(reservaExistente.isPresent()){
             throw new ReservaNoDisponibleException("Ya existe una reserva para el usuario " + reserva.getUsuario().getEmail() +
                     " en la fecha " + reserva.getFechaInicio());

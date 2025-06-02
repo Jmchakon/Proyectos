@@ -10,9 +10,9 @@ public class Constants {
     public static final String RESERVA_ESTADO_CANCELADA = "CANCELADA";
 
     public static final List<String> ESTADOS_RESERVA = List.of(
-            ESTADO_RESERVA_PENDIENTE,
-            ESTADO_RESERVA_CONFIRMADA,
-            ESTADO_RESERVA_CANCELADA
+            RESERVA_ESTADO_PENDIENTE,
+            RESERVA_ESTADO_CONFIRMADA,
+            RESERVA_ESTADO_CANCELADA
     );
 
     // Constantes de roles de usuario

@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface ReservaRepository extends JpaRepository<Reserva,Integer> {
-        Optional<Reserva> findByUsuarioAndFechaReserva(Usuario usuario, LocalDateTime fechaInicio);
+        Optional<Reserva> findByUsuarioAndFechaInicio(Usuario usuario, LocalDateTime fechaInicio);
 
 }

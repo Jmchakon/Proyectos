@@ -18,7 +18,7 @@ public class Recurso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRecurso;
     private String tipoDeRecurso;
-    @ManyToMany(mappedBy = "recurso",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recursos",cascade = CascadeType.ALL)
     private List<Reserva> reservas;
     private double precio;
     @Column(unique = true, nullable = false)

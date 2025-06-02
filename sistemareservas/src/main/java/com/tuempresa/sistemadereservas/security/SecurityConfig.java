@@ -33,7 +33,14 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Sin sesión: usamos tokens
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register").permitAll() // Permitir acceso libre
+                        .requestMatchers("/login",
+                                "/test/**",
+                                "/register",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-resources/**",
+                                "/webjars/**").permitAll() // Permitir acceso libre
                         .requestMatchers("/admin/**").hasRole("ADMIN")     // Solo para ADMIN
                         .requestMatchers("/user/**").hasRole("USER")       // Solo para USER
                         .anyRequest().authenticated()                     // Todo lo demás requiere login
