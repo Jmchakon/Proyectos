@@ -1,5 +1,7 @@
 package com.tuempresa.sistemadereservas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +20,7 @@ public class Reserva {
     private Integer idReserva;
     @ManyToOne
     @JoinColumn(name = "idUsuario" ,  nullable = false )
+    @JsonManagedReference
     private Usuario usuario;
     @ManyToMany
     @JoinTable(
@@ -30,5 +33,6 @@ public class Reserva {
     private LocalDateTime fechaFin;
     private String estadoReservacion;
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Pago> pago;
 }

@@ -3,6 +3,8 @@ package com.tuempresa.sistemadereservas.controller;
 import com.tuempresa.sistemadereservas.entity.Usuario;
 import com.tuempresa.sistemadereservas.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,16 @@ public class UsuarioController {
         @Autowired
         private UsuarioService usuarioService;
 
-        @PostMapping
-        public  Usuario crearUsuario(@RequestBody Usuario usuario){
-            return usuarioService.crearUsuario(usuario);
+    @PostMapping
+    public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario creado = usuarioService.crearUsuario(usuario);
+            return ResponseEntity.ok(creado);
+        } catch (Exception e) {
+            e.printStackTrace();  // Esto imprimirá el error completo en la consola
+            return ResponseEntity.status(500).body("Error al crear usuario: " + e.getMessage());
         }
+    }
         @GetMapping("/{id}")
         public Usuario obtenerUsuario(@PathVariable Integer id){
         return  usuarioService.obtenerUsuarioPorId(id);

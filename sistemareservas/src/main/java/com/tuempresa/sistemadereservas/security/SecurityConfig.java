@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login",
                                 "/test/**",
+                                "/usuarios",
                                 "/register",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
@@ -43,7 +44,7 @@ public class SecurityConfig {
                                 "/webjars/**").permitAll() // Permitir acceso libre
                         .requestMatchers("/admin/**").hasRole("ADMIN")     // Solo para ADMIN
                         .requestMatchers("/user/**").hasRole("USER")       // Solo para USER
-                        .anyRequest().authenticated()                     // Todo lo demás requiere login
+                        .anyRequest().permitAll()//authenticated()                     // Todo lo demás requiere login
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // Añadimos el filtro JWT
                 .build();

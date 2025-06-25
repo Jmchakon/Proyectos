@@ -1,5 +1,7 @@
 package com.tuempresa.sistemadereservas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +21,7 @@ public class Recurso {
     private Integer idRecurso;
     private String tipoDeRecurso;
     @ManyToMany(mappedBy = "recursos",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Reserva> reservas;
     private double precio;
     @Column(unique = true, nullable = false)
