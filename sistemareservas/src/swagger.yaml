@@ -1,31 +1,22 @@
-openapi: 3.0.3
+openapi: 3.0.1
 info:
-  title: API Sistema de Reservas
-  description: API para gestión de usuarios, reservas, recursos y pagos
-  version: "1.0.0"
-
+  title: Sistema de Reservas API
+  description: API REST para gestionar usuarios, reservas, recursos y pagos.
+  version: 1.0.0
 servers:
   - url: http://localhost:8080
-    description: Servidor local de desarrollo
 
 paths:
+
   /usuarios:
     get:
-      summary: Listar todos los usuarios
+      summary: Listar usuarios
       responses:
         '200':
           description: Lista de usuarios
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Usuario'
-
     post:
-      summary: Crear un nuevo usuario
+      summary: Crear usuario
       requestBody:
-        description: Datos del usuario a crear
         required: true
         content:
           application/json:
@@ -33,39 +24,29 @@ paths:
               $ref: '#/components/schemas/Usuario'
       responses:
         '200':
-          description: Usuario creado correctamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Usuario'
+          description: Usuario creado
 
   /usuarios/{id}:
     get:
-      summary: Obtener un usuario por ID
+      summary: Obtener usuario por ID
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
       responses:
         '200':
           description: Usuario encontrado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Usuario'
-
     put:
-      summary: Actualizar un usuario
+      summary: Actualizar usuario
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -73,16 +54,11 @@ paths:
       responses:
         '200':
           description: Usuario actualizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Usuario'
-
     delete:
-      summary: Eliminar un usuario
+      summary: Eliminar usuario
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
@@ -92,19 +68,12 @@ paths:
 
   /reservas:
     get:
-      summary: Listar todas las reservas
+      summary: Listar reservas
       responses:
         '200':
           description: Lista de reservas
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Reserva'
-
     post:
-      summary: Crear una nueva reserva
+      summary: Crear reserva
       requestBody:
         required: true
         content:
@@ -113,39 +82,29 @@ paths:
               $ref: '#/components/schemas/Reserva'
       responses:
         '200':
-          description: Reserva creada correctamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reserva'
+          description: Reserva creada
 
   /reservas/{id}:
     get:
-      summary: Obtener una reserva por ID
+      summary: Obtener reserva por ID
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
       responses:
         '200':
           description: Reserva encontrada
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reserva'
-
     put:
-      summary: Actualizar una reserva
+      summary: Actualizar reserva
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -153,22 +112,146 @@ paths:
       responses:
         '200':
           description: Reserva actualizada
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reserva'
-
     delete:
-      summary: Eliminar una reserva
+      summary: Eliminar reserva
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
       responses:
         '204':
           description: Reserva eliminada
+
+  /reservas/{id}/total:
+    get:
+      summary: Obtener total de reserva
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Total calculado
+
+  /recursos:
+    get:
+      summary: Listar recursos
+      responses:
+        '200':
+          description: Lista de recursos
+    post:
+      summary: Crear recurso
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recurso'
+      responses:
+        '200':
+          description: Recurso creado
+
+  /recursos/{id}:
+    get:
+      summary: Obtener recurso por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Recurso encontrado
+    put:
+      summary: Actualizar recurso
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recurso'
+      responses:
+        '200':
+          description: Recurso actualizado
+    delete:
+      summary: Eliminar recurso
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Recurso eliminado
+
+  /pagos:
+    get:
+      summary: Listar pagos
+      responses:
+        '200':
+          description: Lista de pagos
+    post:
+      summary: Crear pago
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pago'
+      responses:
+        '200':
+          description: Pago creado
+
+  /pagos/{id}:
+    get:
+      summary: Obtener pago por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Pago encontrado
+    put:
+      summary: Actualizar pago
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pago'
+      responses:
+        '200':
+          description: Pago actualizado
+    delete:
+      summary: Eliminar pago
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Pago eliminado
 
 components:
   schemas:
@@ -183,16 +266,10 @@ components:
           type: integer
         email:
           type: string
-          format: email
         role:
           type: string
-          enum: [ADMIN, USER]
         password:
           type: string
-        reservas:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reserva'
 
     Reserva:
       type: object
@@ -213,10 +290,17 @@ components:
           format: date-time
         estadoReservacion:
           type: string
-        pago:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pago'
+
+    Recurso:
+      type: object
+      properties:
+        idRecurso:
+          type: integer
+        nombre:
+          type: string
+        precio:
+          type: number
+          format: double
 
     Pago:
       type: object
@@ -226,33 +310,10 @@ components:
         monto:
           type: number
           format: double
+        metodoPago:
+          type: string
         fechaPago:
           type: string
           format: date-time
-        metodoPago:
-          type: string
-        estadoPago:
-          type: string
-        referenciaPago:
-          type: string
         reserva:
           $ref: '#/components/schemas/Reserva'
-        usuario:
-          $ref: '#/components/schemas/Usuario'
-
-    Recurso:
-      type: object
-      properties:
-        idRecurso:
-          type: integer
-        tipoDeRecurso:
-          type: string
-        reservas:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reserva'
-        precio:
-          type: number
-          format: double
-        nombre:
-          type: string

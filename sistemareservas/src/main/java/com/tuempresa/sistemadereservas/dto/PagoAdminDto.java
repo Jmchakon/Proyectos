@@ -9,7 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 public class PagoAdminDto {
-    private Integer idRecurso;
+    private Integer idPago;
     private String tipoRecurso;
     private List<Reserva> reservas;
+    private double monto;
 }

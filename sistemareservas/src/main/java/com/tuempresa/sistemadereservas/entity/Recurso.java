@@ -19,7 +19,19 @@ public class Recurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRecurso;
-    private String tipoDeRecurso;
+    @Enumerated(EnumType.STRING)
+    private TipoRecurso tipoDeRecurso;
+
+    public enum TipoRecurso {
+        TERRAZA,
+        SALA_RESTAURANTE,
+        HABITACION_1_CAMA,
+        HABITACION_2_CAMAS,
+        SALA_GRANDE,
+        SALA_PEQUENA
+    }
+
+
     @ManyToMany(mappedBy = "recursos",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Reserva> reservas;

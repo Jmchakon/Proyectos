@@ -19,7 +19,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference(value = "usuario-reservas")
     private List<Reserva> reservas = new ArrayList<>();
     @Column(nullable = false)
     private String nombreCompleto;
@@ -32,6 +32,9 @@ public class Usuario {
     private Role role;
     @Column(nullable = false)
     private String password;
+    @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference(value = "usuario-pagos")
+    private List<Pago> pagos;
 
 
 }

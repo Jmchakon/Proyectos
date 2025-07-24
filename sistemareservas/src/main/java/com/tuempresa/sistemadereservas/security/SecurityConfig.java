@@ -41,10 +41,11 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/webjars/**").permitAll() // Permitir acceso libre
+                                "/webjars/**").permitAll()
+                        .requestMatchers("/usuarios/**").hasRole("ADMIN")// Permitir acceso libre
                         .requestMatchers("/admin/**").hasRole("ADMIN")     // Solo para ADMIN
                         .requestMatchers("/user/**").hasRole("USER")       // Solo para USER
-                        .anyRequest().permitAll()//authenticated()                     // Todo lo demás requiere login
+                        .anyRequest().authenticated()                     // Todo lo demás requiere login
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // Añadimos el filtro JWT
                 .build();

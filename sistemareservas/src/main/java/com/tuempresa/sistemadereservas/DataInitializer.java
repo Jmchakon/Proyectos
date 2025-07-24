@@ -34,7 +34,8 @@ public class DataInitializer implements CommandLineRunner {
             // 2. Crear recurso
             Recurso recurso = new Recurso();
             recurso.setNombre("Sala de reuniones");
-            recurso.setTipoDeRecurso("Sala");
+            recurso.setTipoDeRecurso(Recurso.TipoRecurso.valueOf("Sala"));
+
             recurso.setPrecio(100.0);
             recursoRepository.save(recurso);
 

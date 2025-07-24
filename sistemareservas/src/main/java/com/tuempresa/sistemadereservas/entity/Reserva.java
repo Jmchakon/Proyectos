@@ -20,7 +20,7 @@ public class Reserva {
     private Integer idReserva;
     @ManyToOne
     @JoinColumn(name = "idUsuario" ,  nullable = false )
-    @JsonManagedReference
+    @JsonBackReference (value = "usuario-reservas")
     private Usuario usuario;
     @ManyToMany
     @JoinTable(
@@ -33,6 +33,6 @@ public class Reserva {
     private LocalDateTime fechaFin;
     private String estadoReservacion;
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference(value = "reservas-pagos")
     private List<Pago> pago;
 }

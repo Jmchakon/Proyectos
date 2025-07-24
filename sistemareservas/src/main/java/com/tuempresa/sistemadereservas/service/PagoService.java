@@ -8,6 +8,7 @@ public interface PagoService {
     Pago crearPago(Pago pago);
     Pago obtenerPagoPorId(Integer id);
     List<Pago> listarPagos();
-    Pago actualizarPago(Pago pago);
-    void eliminarPago(Integer pago);
+    Pago actualizarPago(Integer id, Pago pagoActualizado);
+
+    void eliminarPago(Integer id);
 }

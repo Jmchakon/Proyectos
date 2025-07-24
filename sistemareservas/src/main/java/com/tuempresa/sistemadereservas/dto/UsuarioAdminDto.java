@@ -11,4 +11,5 @@ public class UsuarioAdminDto {
     private String nombreCompleto;
     private Integer numTelefono;
     private List<Reserva> reservas;
+    private String email;
 }

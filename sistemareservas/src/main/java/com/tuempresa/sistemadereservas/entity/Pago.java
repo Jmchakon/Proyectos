@@ -28,10 +28,10 @@ public class Pago {
     private String referenciaPago;
     @ManyToOne
     @JoinColumn(name = "idReserva", nullable = false)
-    @JsonManagedReference
+    @JsonBackReference (value = "reservas-pagos")
     private Reserva reserva;
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
-    @JsonIgnore
+    @JsonBackReference(value = "usuario-pagos")
     private Usuario usuario;
 }
